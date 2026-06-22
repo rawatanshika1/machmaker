@@ -3,15 +3,19 @@ import { getSession } from '@/lib/auth';
 import { getCustomerById } from '@/lib/customers';
 import { CustomerDetailClient } from './CustomerDetailClient';
 
-export default async function CustomerPage(props: any) {
-  const params = props.params as { id: string };
+export default async function CustomerPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const session = await getSession();
 
   if (!session) {
     redirect('/login');
   }
 
-  const customer = getCustomerById(params.id);
+  const customer = getCustomerById(id);
   if (!customer) {
     redirect('/404');
   }
