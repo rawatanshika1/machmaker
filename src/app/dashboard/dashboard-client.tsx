@@ -165,14 +165,24 @@ export function DashboardClient() {
                           href={`/customer/${customer.id}`} 
                           className="flex items-center gap-3 font-semibold text-brand-900 hover:text-brand-600 transition"
                         >
-                          <img 
-                            src={avatarUrl} 
-                            alt={`${customer.firstName} ${customer.lastName}`}
-                            className="h-8 w-8 rounded-full border border-brand-200"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
-                            }}
-                          />
+                          <div className="relative h-8 w-8 flex-shrink-0">
+  <img 
+    src={avatarUrl} 
+    alt={`${customer.firstName} ${customer.lastName}`}
+    className="h-8 w-8 rounded-full border border-brand-200"
+    onError={(e) => {
+      (e.target as HTMLImageElement).style.display = 'none';
+      const fallback = (e.target as HTMLImageElement).nextSibling as HTMLElement;
+      if (fallback) fallback.style.display = 'flex';
+    }}
+  />
+  <div 
+    className="h-8 w-8 rounded-full bg-brand-600 text-white text-xs font-bold items-center justify-center absolute top-0 left-0"
+    style={{display: 'none'}}
+  >
+    {customer.firstName?.[0]}{customer.lastName?.[0]}
+  </div>
+</div>
                           {customer.firstName} {customer.lastName}
                         </a>
                       </td>
