@@ -94,14 +94,24 @@ export function CustomerDetailClient({ customer }: CustomerDetailClientProps) {
           <div className="rounded-[16px] border border-brand-200/20 bg-white p-8 shadow-card">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex gap-6 items-start">
-                <img 
-                  src={avatarUrl} 
-                  alt={`${customer.firstName} ${customer.lastName}`}
-                  className="h-24 w-24 rounded-full border-4 border-brand-200"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
+                <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-full border-4 border-brand-200">
+  <img 
+    src={avatarUrl} 
+    alt={`${customer.firstName} ${customer.lastName}`}
+    className="h-full w-full object-cover"
+    onError={(e) => {
+      (e.target as HTMLImageElement).style.display = 'none';
+      const fallback = (e.target as HTMLImageElement).nextSibling as HTMLElement;
+      if (fallback) fallback.style.display = 'flex';
+    }}
+  />
+  <div 
+    className="h-full w-full bg-brand-600 text-white text-xl font-bold items-center justify-center absolute top-0 left-0"
+    style={{display: 'none'}}
+  >
+    {customer.firstName?.[0]}{customer.lastName?.[0]}
+  </div>
+</div>
                 <div>
                   <p className="text-sm uppercase tracking-[0.3em] text-brand-600 font-semibold">Profile Details</p>
                   <h1 className="mt-2 text-4xl font-bold text-brand-900">{customer.firstName} {customer.lastName}</h1>
