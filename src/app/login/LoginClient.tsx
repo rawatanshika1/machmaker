@@ -36,34 +36,53 @@ export function LoginClient() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-md rounded-[32px] border border-slate-200 bg-white p-8 shadow-card">
-        <h1 className="text-3xl font-semibold text-slate-900">Matchmaker login</h1>
-        <p className="mt-2 text-sm text-slate-600">Use the seeded matchmaker account to access all customers.</p>
+    <main className="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-brand-600 via-brand-500 to-brand-700">
+      <div className="w-full max-w-md">
+        {/* Logo and Branding */}
+        <div className="mb-8 text-center">
+          <div className="mb-4 text-5xl">⭐</div>
+          <h1 className="text-4xl font-bold text-white mb-2">Starlit</h1>
+          <p className="text-brand-100 text-lg">Where meaningful connections begin</p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-          <label className="block text-sm font-medium text-slate-700">
-            Username
-            <input
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-500"
-            />
-          </label>
-          <label className="block text-sm font-medium text-slate-700">
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-500"
-            />
-          </label>
-          {error ? <p className="text-sm text-rose-600">{error}</p> : null}
-          <button type="submit" className="w-full rounded-2xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-500">
-            Sign in
-          </button>
-        </form>
+        {/* Login Card */}
+        <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-8 shadow-2xl">
+          <h2 className="text-2xl font-semibold text-white mb-2">Welcome back</h2>
+          <p className="text-brand-100 text-sm mb-8">Sign in to your matchmaker account</p>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <label className="block">
+              <span className="text-sm font-medium text-white mb-2 block">Username</span>
+              <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/50 outline-none transition focus:border-white/50 focus:bg-white/20 focus:ring-2 focus:ring-white/30"
+                placeholder="Enter your username"
+              />
+            </label>
+            <label className="block">
+              <span className="text-sm font-medium text-white mb-2 block">Password</span>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/50 outline-none transition focus:border-white/50 focus:bg-white/20 focus:ring-2 focus:ring-white/30"
+                placeholder="Enter your password"
+              />
+            </label>
+            {error ? <p className="text-sm text-red-200">{error}</p> : null}
+            <button 
+              type="submit" 
+              className="w-full rounded-2xl bg-white text-brand-600 px-4 py-3 text-sm font-semibold transition hover:bg-brand-50 shadow-lg hover:shadow-xl"
+            >
+              Sign in
+            </button>
+          </form>
+
+          <p className="mt-6 text-center text-xs text-white/70">
+            Demo credentials: <span className="font-semibold text-white">matchmaker</span> / <span className="font-semibold text-white">secret123</span>
+          </p>
+        </div>
       </div>
     </main>
   );
