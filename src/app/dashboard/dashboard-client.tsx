@@ -165,7 +165,7 @@ export function DashboardClient() {
                           href={`/customer/${customer.id}`} 
                           className="flex items-center gap-3 font-semibold text-brand-900 hover:text-brand-600 transition"
                         >
-                          <div className="relative h-8 w-8 flex-shrink-0">
+                          <div className="relative h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
   <img 
     src={avatarUrl} 
     alt={`${customer.firstName} ${customer.lastName}`}
